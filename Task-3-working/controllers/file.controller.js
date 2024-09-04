@@ -21,9 +21,9 @@ const getFile = async (req, res) => {
 
 const getPhrase = async (req, res) => {
   try {
-    const { filename, phrase } = req.params;
-    const file = await File.find( { $and: [ { filename: { $eq: filename } }, { contents: { $regex: phrase } } ] }) ;
-    res.status(200).json(file);
+    const { filename, phrase} = req.params;
+    const file = await File.findOne( { $and: [ { filename: { $eq: filename } }, { contents: { $regex: phrase } } ] }) ;
+    res.status(200).json({"filename": filename,"matches": {"line": "1", "character": file.contents.indexOf(phrase)}});
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
