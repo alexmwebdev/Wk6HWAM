@@ -3,12 +3,12 @@ async function searchFilesInDirectoryAsync(file, txt) {
     fs.readFile(file, {encoding: 'utf-8'}, function(err, data) {
         try {
             let dataArray = data.split('\n'); // convert file data in an array
-            const searchKeyword = txt; // we are looking for a line, contains, key word 'user1' in the file
-            let lastIndex = -1; // let say, we have not found the keyword
+            const searchKeyword = txt; // we are looking for a line, contains, the phrase in the file
+            let lastIndex = -1; // phrase not found
             let indexPos = 0;
             for (let index=0; index<dataArray.length; index++) {
-                if (dataArray[index].includes(searchKeyword)) { // check if a line contains the 'user1' keyword
-                    lastIndex = index; // found a line includes a 'user1' keyword
+                if (dataArray[index].includes(searchKeyword)) { // check if a line contains the phrase
+                    lastIndex = index; // found a line includes a phrase keyword
                     indexPos = dataArray[index].indexOf(searchKeyword);
                     break; 
                 }
